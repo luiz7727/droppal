@@ -38,9 +38,9 @@ export default function Products() {
   return (
     <main className="p-4 space-y-4">
       {
-        products.map(({ name, totalSold, store }) => {
+        products.map(({ name, totalSold, store }, index) => {
           return (
-            <Card>
+            <Card key={index}>
               <CardHeader>
                 <CardTitle>{name}</CardTitle>
                 <CardDescription>Sold: {totalSold}</CardDescription>
