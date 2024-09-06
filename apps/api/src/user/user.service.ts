@@ -1,6 +1,6 @@
 import { Injectable } from "@nestjs/common";
+import * as bcrypt from "bcryptjs";
 import { PrismaService } from "src/prisma/prisma.service";
-
 
 interface CreateUserRequest {
   name: string
@@ -34,7 +34,7 @@ export class UserService {
         name,
         email,
         username,
-        password,
+        password: bcrypt.hashSync(password, 10),
         telephone
       }
     });
