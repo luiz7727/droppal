@@ -19,11 +19,11 @@ import { useForm } from "react-hook-form"
 
 export default function Home() {
 
-  const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<loginFormType>({
+  const { register, handleSubmit, formState: { isSubmitting } } = useForm<loginFormType>({
     resolver: zodResolver(loginSchema)
   });
 
-  async function onSubmit(data: loginFormType) {
+  async function onSubmit() {
 
   }
 
