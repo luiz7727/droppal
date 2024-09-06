@@ -1,6 +1,6 @@
 'use client'
 
-import { Button } from "@/components/ui/button"
+import { Button } from "@/components/ui/button";
 import {
   Card,
   CardContent,
@@ -8,23 +8,43 @@ import {
   CardFooter,
   CardHeader,
   CardTitle,
-} from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Label } from "@/components/ui/label"
-import { signUpSchema, signUpFormType } from "@/schemas/sign-up-schema"
-import { zodResolver } from "@hookform/resolvers/zod"
-import { Loader2 } from "lucide-react"
-import Link from "next/link"
-import { useForm } from "react-hook-form"
-
+} from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { useToast } from "@/hooks/use-toast";
+import createUser from "@/http/user/create-user";
+import { signUpSchema, signUpFormType } from "@/schemas/sign-up-schema";
+import { zodResolver } from "@hookform/resolvers/zod";
+import { Loader2 } from "lucide-react";
+import Link from "next/link";
+import { useRouter } from "next/navigation";
+import { useForm } from "react-hook-form";
+import { setCookie } from "nookies";
 export default function SignUp() {
+
+  const { toast } = useToast();
+  const { push } = useRouter();
 
   const { register, handleSubmit, formState: { errors, isSubmitting } } = useForm<signUpFormType>({
     resolver: zodResolver(signUpSchema)
   });
 
   async function onSubmit(data: signUpFormType) {
+    const { code, message } = await createUser(data);
 
+    if(code === 201) {
+      setCookie(null, 'droppal-token', message, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
+      push('/dashboard');
+    }
+    else {
+      toast({
+        title: message,
+        description: 'Check your credentials',
+      })
+    }
   }
 
   return (
@@ -113,7 +133,7 @@ export default function SignUp() {
             }
             <Button className="w-full" type="submit">
               {
-                isSubmitting ? <Loader2 className="animate-spin w-5 h-5"/> : 'Sign in'
+                isSubmitting ? <Loader2 className="animate-spin w-5 h-5"/> : 'Sign Up'
               }
             </Button>
           </form>

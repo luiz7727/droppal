@@ -1,4 +1,5 @@
-import { Injectable } from "@nestjs/common";
+import { BadRequestException, Injectable, NotFoundException } from "@nestjs/common";
+import { JwtService } from "@nestjs/jwt";
 import * as bcrypt from "bcryptjs";
 import { PrismaService } from "src/prisma/prisma.service";
 
@@ -11,25 +12,34 @@ interface LoginRequest {
 @Injectable()
 export class AuthService {
 
-	constructor(private db: PrismaService) { }
+	constructor(private db: PrismaService, private jwt:JwtService) { }
 
 	async login({ email, password }: LoginRequest): Promise<string> {
 
-		const user = this.db.user.findUnique({
+		const user = await this.db.user.findUnique({
 			where: {
 				email
 			}
 		});
 
 		if (!user) {
-			throw new Error('User not found');
+			throw new NotFoundException('User not found');
 		}
 
-		if (bcrypt.compare(password, (await user).password)) {
-			throw new Error('Invalid Credentials');
+		if (!await bcrypt.compare(password, user.password)) {
+			throw new BadRequestException('Invalid Credentials');
 		}
+		const token = await this.jwt.signAsync({});
 
+		await this.db.user.update({
+			where: {
+				email
+			},
+			data: {
+				token
+			}
+		});
 
-		return '';
+		return token;
 	}
 }

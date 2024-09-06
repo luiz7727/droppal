@@ -49,25 +49,25 @@ export default function DashboardLayout({
           </SheetTrigger>
           <SheetContent side="left">
             <nav className="grid gap-6 text-lg font-medium">
-              <NavLink
-                href="/dashboard/student"
-                className="flex items-center gap-2 text-lg font-semibold"
-              >
-                <Package2 className="h-6 w-6" />
-                <span className="sr-only">Acme Inc</span>
-              </NavLink>
+              <Link
+              href="#"
+              className="flex items-center gap-2 text-lg font-semibold md:text-base"
+            >
+              <Package2 className="h-6 w-6" />
+              <span className="sr-only">Acme Inc</span>
+            </Link>
 
-              <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
-                <NavLink href={'/dashboard/student'}>Dashboard</NavLink>
-              </Button>
-              
-              <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
-                <NavLink href={'/dashboard/student/marketplace'}>Marketplace</NavLink>
-              </Button>
-              
-              <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
-                <NavLink href={'/dashboard/student/courses'}>Courses</NavLink>
-              </Button>
+            <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
+              <NavLink href={'/dashboard'}>Dashboard</NavLink>
+            </Button>
+            
+            <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
+              <NavLink href={'/dashboard/products'}>Products</NavLink>
+            </Button>
+            
+            <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
+              <NavLink href={'/dashboard/stores'}>Stores</NavLink>
+            </Button>
             </nav>
           </SheetContent>
         </Sheet>

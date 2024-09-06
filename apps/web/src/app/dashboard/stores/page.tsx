@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import type { Store } from "@/types/Store";
+import { Store } from "@/types/Store";
 
 export default function Stores() {
 
@@ -12,7 +12,11 @@ export default function Stores() {
     {
       name: 'Amazon',
       invoicing: Math.floor(Math.random() * 100)
-    }
+    },
+    {
+      name: 'AliExpress',
+      invoicing: Math.floor(Math.random() * 100)
+    },
   ];
   
   return (

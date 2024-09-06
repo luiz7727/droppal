@@ -1,70 +1,82 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
-import { Product } from "@/types/Product";
 import amazonIcon from "@/assets/amazon_icon.png";
 import mlIcon from "@/assets/mercadolivre_icon.png";
+import blackTShirt from "@/assets/black_t-shirt.png";
+import dunk from "@/assets/dunk.png";
+import orangeTShirt from "@/assets/orange_t_shirt.png";
+import travisDunk from "@/assets/travis_dunk.png";
+import whiteSneaker from "@/assets/white_sneaker.png";
 import Image from "next/image";
 
 export default function Products() {
 
-  const products: Product[] = [
-    {
-      name: 'AJ1 - SpiderVerse',
-      totalSold: Math.floor(Math.random() * 100),
-      store: 'MercadoLivre',
-    },
-    {
-      name: 'AJ4 - Military W...',
-      totalSold: Math.floor(Math.random() * 100),
-      store: 'MercadoLivre'
-    },
-    {
-      name: 'Fitted T-Shirt - Ora...',
-      totalSold: Math.floor(Math.random() * 100),
-      store: 'Amazon'
-    },
-    {
-      name: 'AJ1 KIDS - Retro ... ',
-      totalSold: Math.floor(Math.random() * 100),
-      store: 'MercadoLivre'
-    },
-    {
-      name: 'Fitted T-Shirt - Bla...',
-      totalSold: Math.floor(Math.random() * 100),
-      store: 'Amazon'
-    },
-    
-  ];
-
   return (
     <main className="p-4 space-y-4">
-      {
-        products.map(({ name, totalSold, store }, index) => {
-          return (
-            <Card key={index}>
-              <CardHeader>
-                <CardTitle>{name}</CardTitle>
-                <CardDescription>Sold: {totalSold}</CardDescription>
-              </CardHeader>
-              <CardContent>
-
-              </CardContent>
-              <CardFooter>
-                {
-                  store === "Amazon" && (
-                    <Image width={40} height={40} src={amazonIcon} alt=""/>
-                  )
-                }
-                
-                {
-                  store === "MercadoLivre" && (
-                    <Image width={40} height={40} src={mlIcon} alt=""/>
-                  )
-                }
-              </CardFooter>
-            </Card>
-          )
-        })
-      }
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>AJ1 - SpiderVerse</CardTitle>
+          <CardDescription>Sold: {Math.floor(Math.random() * 100)}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image width={100} height={100} src={travisDunk} alt="" />
+        </CardContent>
+        <CardFooter>
+          <Image width={40} height={50} src={amazonIcon} alt="Amazon Icon"/>
+        </CardFooter>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>AJ4 - Military W...</CardTitle>
+          <CardDescription>Sold: {Math.floor(Math.random() * 100)}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image width={100} height={100} src={whiteSneaker} alt="" />
+        </CardContent>
+        <CardFooter>
+          <Image width={40} height={50} src={mlIcon} alt="Mercado Livre Icon"/>
+        </CardFooter>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Fitted T-Shirt - Ora...</CardTitle>
+          <CardDescription>Sold: {Math.floor(Math.random() * 100)}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image width={100} height={100} src={orangeTShirt} alt="" />
+        </CardContent>
+        <CardFooter>
+          <Image width={40} height={50} src={amazonIcon} alt="Amazon Icon"/>
+        </CardFooter>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>AJ1 KIDS - Retro ... </CardTitle>
+          <CardDescription>Sold: {Math.floor(Math.random() * 100)}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image width={100} height={100} src={dunk} alt="" />
+        </CardContent>
+        <CardFooter>
+          <Image width={40} height={50} src={mlIcon} alt="Mercado Livre Icon"/>
+        </CardFooter>
+      </Card>
+      
+      <Card>
+        <CardHeader>
+          <CardTitle>Fitted T-Shirt - Bla...</CardTitle>
+          <CardDescription>Sold: {Math.floor(Math.random() * 100)}</CardDescription>
+        </CardHeader>
+        <CardContent>
+          <Image width={100} height={100} src={blackTShirt} alt="" />
+        </CardContent>
+        <CardFooter>
+          <Image width={40} height={50} src={amazonIcon} alt="Amazon Icon"/>
+        </CardFooter>
+      </Card>
     </main>
   )
 }

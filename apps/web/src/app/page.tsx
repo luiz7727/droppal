@@ -11,23 +11,43 @@ import {
 } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Label } from "@/components/ui/label"
+import { useToast } from "@/hooks/use-toast"
+import login from "@/http/auth/login"
 import { loginSchema, type loginFormType } from "@/schemas/login.schema"
 import { zodResolver } from "@hookform/resolvers/zod"
 import { Loader2 } from "lucide-react"
 import Link from "next/link"
 import { useForm } from "react-hook-form"
+import { setCookie } from "nookies";
+import { useRouter } from "next/navigation"
 
 export default function Home() {
 
+  const { toast } = useToast();
+  const { push } = useRouter();
   const { register, handleSubmit, formState: { isSubmitting } } = useForm<loginFormType>({
     resolver: zodResolver(loginSchema)
   });
 
-  async function onSubmit() {
+  async function onSubmit(data: loginFormType) {
+    const { data:response, status } = await login(data);
 
+    if(status === 201) {
+      setCookie(null, 'droppal-token', response, {
+        maxAge: 30 * 24 * 60 * 60,
+        path: '/',
+      });
+      push('/dashboard');
+    }
+    else {
+      toast({
+        title: "Invalid Credentials",
+        description: "Check your credentials",
+      });
+    }
   }
 
-
+  
   return (
     <main className="w-full h-screen flex items-center justify-center">
       <Card className="w-full max-w-sm">
@@ -46,7 +66,6 @@ export default function Home() {
                 type="email"
                 placeholder="m@example.com"
                 autoComplete="off"
-                required
                 {...register('email')}
               />
             </div>
@@ -54,9 +73,9 @@ export default function Home() {
               <Label htmlFor="password">Password</Label>
               <Input 
                 id="password"
-                type="password"
+                type="text"
                 autoComplete="off"
-                required
+                placeholder="********"
                 {...register('password')}
               />
             </div>
