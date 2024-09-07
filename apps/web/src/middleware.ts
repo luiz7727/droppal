@@ -3,10 +3,10 @@ import type { NextRequest } from 'next/server'
 import { cookies } from 'next/headers';
 // This function can be marked `async` if using `await` inside
 export function middleware(request: NextRequest) {
-  const token = cookies().get('droppal-token')?.value;
-  if(!token) {
-    return NextResponse.redirect(new URL('/', request.url));
-  }
+  // const token = cookies().get('droppal-token')?.value;
+  // if(!token) {
+  //   return NextResponse.redirect(new URL('/', request.url));
+  // }
 }
  
 // See "Matching Paths" below to learn more
