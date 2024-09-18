@@ -8,7 +8,7 @@ export class StoreController {
 
     constructor(private storeService: StoreService) { }
 
-    @Get()
+    @Get('find-all-from-user')
     async findAllFromUser(@Headers('Authorization') token:string) {
         const stores = await this.storeService.findAllFromUser(token);
         return stores;

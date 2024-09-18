@@ -1,3 +1,3 @@
 export type Store = {
-  name: string,
+  type: string,
 }

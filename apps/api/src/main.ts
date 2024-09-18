@@ -11,12 +11,12 @@ async function bootstrap() {
 
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
-    origin:['http://localhost:3000'],
+    origin:['http://localhost:3000', 'https://droppal.vercel.app/'],
     methods:['GET','POST','PUT','DELETE'],
     allowedHeaders: ['*'],
     exposedHeaders: ['*']
   })
-  app.setGlobalPrefix('/api')
-  await app.listen(3001);
+  app.setGlobalPrefix('/api');
+  await app.listen(3001,'0.0.0.0');
 }
 bootstrap();

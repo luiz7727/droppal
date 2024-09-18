@@ -1,5 +1,3 @@
-'use client'
-
 import { Button } from "@/components/ui/button";
 import { Card, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import {
@@ -13,11 +11,12 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Store } from "@/types/Store";
+import getStoresFromUser from "@/utils/store/get-stores-from-user";
 import Link from "next/link";
 
-export default function Stores() {
+export default async function Stores() {
 
-  const stores:Store[] = [];
+  const stores:Store[] = await getStoresFromUser();
   
   return (
     <main className="p-4 space-y-2">
@@ -35,7 +34,7 @@ export default function Stores() {
           </DialogHeader>
 
           <Button 
-            disabled={stores.some(({ name }) => name === 'Mercado Livre')}
+            disabled={stores.some(({ type }) => type === 'Mercado Livre')}
             >
               <Link href={`https://auth.mercadolivre.com.br/authorization?response_type=code&client_id=${process.env.NEXT_PUBLIC_MERCAD0_LIVRE_APP_ID}&redirect_uri=${process.env.NEXT_PUBLIC_MERCADO_LIVRE_REDIRECT_URI}`}>
                 Mercado Livre
@@ -55,15 +54,15 @@ export default function Stores() {
 
 
       {
-        stores.map(({ name }, index) => {
+        stores.map(({ type }, index) => {
           return (
             <Card key={index}>
               <CardHeader>
-                <CardTitle>{name}</CardTitle>
+                <CardTitle>{type}</CardTitle>
               </CardHeader>
               <CardFooter className="gap-x-4">
                 <Button asChild>
-                  <Link href={`/dashboard/stores/${name}`}>View Store</Link>
+                  <Link href={`/dashboard/stores/${type}`}>View Store</Link>
                 </Button>
                 <Button variant={'destructive'}>Turn Off</Button>
               </CardFooter>
