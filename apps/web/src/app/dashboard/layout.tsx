@@ -20,7 +20,7 @@ export default function DashboardLayout({
             className="flex items-center gap-2 text-lg font-semibold md:text-base"
           >
             <Package2 className="h-6 w-6" />
-            <span className="sr-only">Acme Inc</span>
+            <span className="sr-only">Accme Inc</span>
           </Link>
 
           <Button variant={'ghost'} size={'sm'} className="text-muted-foreground data-[current=true]:text-foreground" asChild>
