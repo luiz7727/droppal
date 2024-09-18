@@ -11,7 +11,7 @@ export default function MercadoLivre() {
       
       <Card>
         <CardHeader>
-          <CardTitle>Memoria Servidor 16 Gg Ddr4 Dell R330 R340 T330 T340</CardTitle>
+          <CardTitle>Memoria Servidor a16 Gg Ddr4 Dell R330 R340 T330 T340</CardTitle>
           <CardDescription>Total Sold: {Math.floor(Math.random() * 100)}</CardDescription>
         </CardHeader>
         <CardContent>
