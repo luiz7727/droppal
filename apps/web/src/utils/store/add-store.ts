@@ -1,4 +1,3 @@
-import { api } from "@/lib/api";
 import { cookies } from "next/headers";
 
 export default async function addStore(type:string) {

@@ -1,13 +1,8 @@
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import Image from "next/image";
 import mlIcon from "@/assets/mercadolivre_icon.png";
-import blackTShirt from "@/assets/black_t-shirt.png";
-import dunk from "@/assets/dunk.png";
-import orangeTShirt from "@/assets/orange_t_shirt.png";
-import travisDunk from "@/assets/travis_dunk.png";
-import whiteSneaker from "@/assets/white_sneaker.png";
 
-export default function Store() {
+export default function MercadoLivre() {
   
   const products = [];
 

@@ -16,7 +16,8 @@ import Link from "next/link";
 
 export default async function Stores() {
 
-  const stores:Store[] = await getStoresFromUser();
+  const stores:Store[] = [];
+  // await getStoresFromUser()
   
   return (
     <main className="p-4 space-y-2">
