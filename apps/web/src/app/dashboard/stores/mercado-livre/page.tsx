@@ -2,10 +2,10 @@
 
 import { Card, CardContent, CardDescription, CardFooter, CardHeader, CardTitle } from "@/components/ui/card";
 import { Sheet, SheetContent, SheetDescription, SheetHeader, SheetTitle, SheetTrigger } from "@/components/ui/sheet";
-import getItemsMercadoLivre, { type ItemResponse } from "@/utils/mercado-livre/get-items";
+import getItemsMercadoLivre, { ItemResponse } from "@/utils/mercado-livre/get-items";
 import { useEffect, useState } from "react";
 
-export default async function MercadoLivre() {
+export default function MercadoLivre() {
 
   const [items,setItems] = useState<ItemResponse[]>([]);
 

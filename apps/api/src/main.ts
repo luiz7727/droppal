@@ -14,7 +14,7 @@ async function bootstrap() {
     origin:['http://localhost:3000', 'https://droppal.vercel.app/'],
     methods:['GET','POST','PUT','DELETE'],
     allowedHeaders: ['*'],
-    exposedHeaders: ['*']
+    exposedHeaders: ['*'],
   })
   app.setGlobalPrefix('/api');
   await app.listen(3001,'0.0.0.0');

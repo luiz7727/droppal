@@ -1,5 +1,6 @@
 import { parseCookies } from "nookies";
 import getItemMercadoLivre from "./get-item";
+import axios from "axios";
 
 interface Response {
   results: string []
@@ -15,16 +16,12 @@ export default async function getItemsMercadoLivre(): Promise<ItemResponse[]> {
   const { 'ml_access_token': access_token } = parseCookies();
   const { 'ml_user_id': user_id } = parseCookies();
 
-  const userId = Number(user_id)
   
-  const response = await fetch(`https://api.mercadolibre.com/users/${userId}/items/search`,{
-    method: 'GET',
+  const { data: { results } } = await axios.get<Response>(`https://api.mercadolibre.com/users/${user_id}/items/search`,{
     headers: {
-      'Authorization': `Bearer ${access_token}`
+      Authorization:`Bearer APP_USR-88429305455804-091816-8a487ef0c8dbd9ce4318ece3480c055d-224645276`
     }
   });
-
-  const { results } = await response.json() as Response;
 
   results.forEach( async (id) => {
     const result = await getItemMercadoLivre(id);
