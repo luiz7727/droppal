@@ -8,10 +8,13 @@ async function bootstrap() {
     AppModule,
     new FastifyAdapter()
   );
+
   app.useGlobalPipes(new ValidationPipe());
   app.enableCors({
     origin:['http://localhost:3000'],
-    methods:['GET','POST','PUT','DELETE']
+    methods:['GET','POST','PUT','DELETE'],
+    allowedHeaders: ['*'],
+    exposedHeaders: ['*']
   })
   app.setGlobalPrefix('/api')
   await app.listen(3001);

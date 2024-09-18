@@ -30,7 +30,9 @@ export class UserService {
       throw new ConflictException('User already created');
     }
 
-    const token = await this.jwt.signAsync({});
+    const token = await this.jwt.signAsync({
+      email: email
+    });
 
     await this.db.user.create({
       data: {

@@ -3,16 +3,24 @@ generator client {
 }
 
 datasource db {
-  provider = "sqlite"
+  provider = "postgresql"
   url      = env("DATABASE_URL")
 }
 
 model User {
-  id        Int    @id @default(autoincrement())
+  id        Int     @id @default(autoincrement())
   name      String
-  email     String @unique
+  email     String  @unique
   username  String
   password  String
   telephone String
-  token     String @default("")
+  token     String  @default("")
+  stores    Store[]
+}
+
+model Store {
+  id     Int    @id @default(autoincrement())
+  type   String //mercado_livre; amazon; aliexpress
+  user   User   @relation(fields: [userId], references: [id])
+  userId Int
 }

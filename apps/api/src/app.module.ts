@@ -4,11 +4,13 @@ import { PrismaModule } from './prisma/prisma.module';
 import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
+import { StoreModule } from './store/store.module';
 
 @Module({
   imports: [
     AuthModule,
     UserModule,
+    StoreModule,
     PrismaModule,
     JwtModule.register({
       global: true,

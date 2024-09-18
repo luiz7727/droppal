@@ -29,7 +29,9 @@ export class AuthService {
 		if (!await bcrypt.compare(password, user.password)) {
 			throw new BadRequestException('Invalid Credentials');
 		}
-		const token = await this.jwt.signAsync({});
+		const token = await this.jwt.signAsync({
+			email: email
+		});
 
 		await this.db.user.update({
 			where: {
