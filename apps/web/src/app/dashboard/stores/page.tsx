@@ -13,28 +13,11 @@ import {
   DialogTrigger,
 } from "@/components/ui/dialog"
 import { Store } from "@/types/Store";
-import getCodeFromMercadoLivre from "@/utils/mercado-livre/get-code-from-mercado-livre";
-import transferCodeToAccessToken from "@/utils/mercado-livre/transfer-code-to-access-token";
 import Link from "next/link";
-import { useSearchParams } from "next/navigation";
-import { useEffect } from "react";
 
 export default function Stores() {
 
-  const searchParams = useSearchParams();
-  const mlCode = searchParams.get('code') ?? '';
   const stores:Store[] = [];
-
-  useEffect(() => {
-    if(mlCode?.length > 0) {
-      transferCodeToAccessToken(mlCode)
-      .then(({ access_token, refresh_token, user_id }) => {
-        sessionStorage.setItem('ml_access_token', access_token);
-        sessionStorage.setItem('ml_refresh_token', refresh_token);
-        sessionStorage.setItem('ml_user_id', user_id.toString());
-      })
-    }
-  },[])
   
   return (
     <main className="p-4 space-y-2">
