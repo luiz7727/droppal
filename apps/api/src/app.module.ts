@@ -5,6 +5,7 @@ import { UserModule } from './user/user.module';
 import { JwtModule } from '@nestjs/jwt';
 import { randomUUID } from 'crypto';
 import { StoreModule } from './store/store.module';
+import { MercadoLivreModule } from './mercado-livre/mercado-livre.module';
 
 @Module({
   imports: [
@@ -12,6 +13,7 @@ import { StoreModule } from './store/store.module';
     UserModule,
     StoreModule,
     PrismaModule,
+    MercadoLivreModule,
     JwtModule.register({
       global: true,
       secret: randomUUID(),
@@ -21,4 +23,4 @@ import { StoreModule } from './store/store.module';
     })
   ],
 })
-export class AppModule { }
+export class AppModule {}
